@@ -70,7 +70,7 @@ router.delete('/:id', (req, res) => {
 });
 
 //update car which is selected
-router.post('/update/:id', (req, res) => {
+router.put('/update/:id', (req, res) => {
   const post  = {
     carLicensePlate: req.body.carLicensePlate, 
     carBrand: req.body.carBrand,
