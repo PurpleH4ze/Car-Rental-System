@@ -131,6 +131,66 @@ router.delete('/delete', (req, res) => {
       res.send('Booking deleted from database');
     }
   });
-})
+});
+
+router.get('/sort/ByDate', (req, res) => {
+  let query = 'SELECT * FROM mydb.booking ORDER BY bookingPickupDateTime';
+  mysqlConnection.query(query, (err, result) => {
+    if(err) {
+      console.log(err);
+    }
+    else{
+      res.json(result)
+    }
+  });
+});
+
+router.get('/sort/ByDateDesc', (req, res) => {
+  let query = 'SELECT * FROM mydb.booking ORDER BY bookingPickupDateTime DESC';
+  mysqlConnection.query(query, (err, result) => {
+    if(err) {
+      console.log(err);
+    }
+    else{
+      res.json(result)
+    }
+  });
+});
+
+router.get('/sort/ByPrice', (req, res) => {
+  let query = 'SELECT * FROM booking ORDER BY price';
+  mysqlConnection.query(query, (err, result) => {
+    if(err) {
+      console.log(err);
+    }
+    else{
+      res.json(result)
+    }
+  });
+});
+
+router.get('/sort/ByPriceDesc', (req, res) => {
+  let query = 'SELECT * FROM booking ORDER BY price DESC';
+  mysqlConnection.query(query, (err, result) => {
+    if(err) {
+      console.log(err);
+    }
+    else{
+      res.json(result)
+    }
+  });
+});
+
+router.get('/sort/ByPrice/:id', (req, res) => {
+  let query = 'SELECT * FROM booking WHERE price < ?';
+  mysqlConnection.query(query, [req.params.id], (err, result) => {
+    if(err) {
+      console.log(err);
+    }
+    else{
+      res.json(result)
+    }
+  });
+});
 
 module.exports = router;

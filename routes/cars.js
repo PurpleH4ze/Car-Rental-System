@@ -16,6 +16,58 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/sortByCategory/:id', (req, res) => {
+  let query = 'SELECT * FROM car WHERE category_id = ?';
+  mysqlConnection.query(query, [req.params.id], (err, result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log('The cars sorted by categories...');
+      res.json(result);
+    }
+  });
+});
+
+router.get('/sortByPerDay/:id', (req, res) => {
+  let query = 'SELECT * FROM car WHERE carRatePerDay < ?';
+  mysqlConnection.query(query, [req.params.id], (err, result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log(`The cars sorted that is price under ${req.params.id} ...`);
+      res.json(result);
+    }
+  });
+});
+
+router.get('/sortByMostExpensive', (req, res) => {
+  let query = 'SELECT * FROM car ORDER BY carRatePerDay ';
+  mysqlConnection.query(query, (err, result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log('The cars sorted by most expensive ...');
+      res.json(result);
+    }
+  });
+});
+
+router.get('/sortByMostCheap', (req, res) => {
+  let query = 'SELECT * FROM car ORDER BY carRatePerDay DESC';
+  mysqlConnection.query(query, (err, result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log('The cars sorted by most cheap ...');
+      res.json(result);
+    }
+  });
+});
+
 //adding car into database with post request
 router.post('/add', (req, res) => {
   const post  = {
