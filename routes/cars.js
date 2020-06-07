@@ -70,15 +70,25 @@ router.get('/sortByMostCheap', (req, res) => {
 
 //adding car into database with post request
 router.post('/add', (req, res) => {
+
+  const categoryId = req.body.category_id;
+  console.log(categoryId);
+  const fixCategoryId = () => {
+    if (categoryId === "Lüks") return 1;
+    if (categoryId === "Ekonomik") return 2;
+    if (categoryId === "Aile") return 3;
+    if (categoryId === "Standard") return 4;
+  }
   const post  = {
     carLicensePlate: req.body.carLicensePlate, 
     carBrand: req.body.carBrand,
     carModel: req.body.carModel,
     carGearBox: req.body.carGearBox,
-    category_id: req.body.category_id,
+    category_id: fixCategoryId(),
     carRatePerDay: req.body.carRatePerDay 
   };
   console.log(req.body);
+  console.log(post);
 
   let query = 'INSERT INTO mydb.car SET ?';
   mysqlConnection.query(query, post, (err, result) => {
