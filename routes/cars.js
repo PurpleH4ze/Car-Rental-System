@@ -133,12 +133,22 @@ router.delete('/:id', (req, res) => {
 
 //update car which is selected
 router.put('/update/:id', (req, res) => {
+
+  const categoryId = req.body.category_id;
+  console.log(categoryId);
+  const fixCategoryId = () => {
+    if (categoryId === "Lüks") return 1;
+    if (categoryId === "Ekonomik") return 2;
+    if (categoryId === "Aile") return 3;
+    if (categoryId === "Standard") return 4;
+  }
+
   const post  = {
     carLicensePlate: req.body.carLicensePlate, 
     carBrand: req.body.carBrand,
     carModel: req.body.carModel,
     carGearBox: req.body.carGearBox,
-    category_id: req.body.category_id,
+    category_id: fixCategoryId(),
     carRatePerDay: req.body.carRatePerDay 
   };
   console.log('The car to update');
