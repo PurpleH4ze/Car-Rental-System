@@ -45,10 +45,10 @@ router.post('/add', (req, res) =>{
 });
 
 //delete customer
-router.delete('/delete', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   console.log(req.body);
   let query = 'DELETE FROM customer WHERE id_customer = ?';
-  mysqlConnection.query(query, [req.body.id_customer], (err, result) => {
+  mysqlConnection.query(query, [req.params.id], (err, result) => {
     if(err){
       console.log(err);
       res.status(500).send(err);
