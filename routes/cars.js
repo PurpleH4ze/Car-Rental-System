@@ -16,6 +16,21 @@ router.get('/', (req, res) => {
   });
 });
 
+//sortbycarBrand
+router.get('/sortBycarBrand/:name', (req, res) => {
+  let query = 'SELECT * FROM car WHERE carBrand = ?';
+  mysqlConnection.query(query, [req.params.name], (err, result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log('The cars is here...');
+      res.json(result);
+    }
+  });
+});
+
+
 router.get('/sortByCategory/:id', (req, res) => {
   let query = 'SELECT * FROM car WHERE category_id = ?';
   mysqlConnection.query(query, [req.params.id], (err, result) => {
