@@ -97,4 +97,21 @@ router.put('/update/:id', (req, res) => {
   });
 });
 
+//get id_customer using name and lastname params
+
+router.get('/:customerName/:customerLastName',(req, res) => {
+  const name = req.params.customerName;
+  const lastname = req.params.customerLastName;
+  console.log(name,lastname);
+  let query = 'SELECT id_customer FROM mydb.customer WHERE customerName = ? && customerLastName = ?';
+  mysqlConnection.query(query, [name, lastname], (err, result) => {
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
 module.exports = router;
