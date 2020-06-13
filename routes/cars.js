@@ -58,7 +58,7 @@ router.get('/sortByPerDay/:id', (req, res) => {
 });
 
 router.get('/sortByMostExpensive', (req, res) => {
-  let query = 'SELECT * FROM car ORDER BY carRatePerDay ';
+  let query = 'SELECT * FROM car ORDER BY carRatePerDay DESC';
   mysqlConnection.query(query, (err, result) => {
     if(err){
       console.log(err);
@@ -71,7 +71,7 @@ router.get('/sortByMostExpensive', (req, res) => {
 });
 
 router.get('/sortByMostCheap', (req, res) => {
-  let query = 'SELECT * FROM car ORDER BY carRatePerDay DESC';
+  let query = 'SELECT * FROM car ORDER BY carRatePerDay';
   mysqlConnection.query(query, (err, result) => {
     if(err){
       console.log(err);
