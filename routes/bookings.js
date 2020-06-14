@@ -96,13 +96,9 @@ router.get('/:id', (req, res) => {
 
 router.put('/update/:id', (req, res) => {
   const post  = {
-    booking_id: req.body.booking_id,
     bookingPickUpDateTime: req.body.bookingPickUpDateTime,
     bookingReturnDateTime: req.body.bookingReturnDateTime,
     price: req.body.price,
-    customer_id: req.body.customer_id,
-    carLicensePlate: req.body.carLicensePlate,
-    car_category_id: req.body.car_category_id
   };
   console.log(req.body);
   console.log(req.params.id);
