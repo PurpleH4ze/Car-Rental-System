@@ -39,7 +39,7 @@ router.post('/add', (req, res) =>{
     }
     else {
       console.log('This customer added to database ! !');
-      res.json('Customer is added to database');
+      res.json(post.id_customer);
     }
   });
 });
